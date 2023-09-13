@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {collection,addDoc, doc, setDoc} from "firebase/firestore"
 import {firestore} from "../firebase_setup/firebase"
 import {v4 as uuidv4 } from "uuid"
+import { NavLink,useNavigate } from 'react-router-dom'
 import CrudTable from './CrudTable'
 const CrudOperation = () => {
     const [detail,setdetail]=useState({id:uuidv4(),firstname:"",email:""})
     const [docId,setDocId]=useState("")
     const [isUpdate,setIsUpdate]=useState(false)
+    const navigate=useNavigate();
     const HandleChange=(name,value)=>{
         setdetail({...detail, [name]:value})
     }
@@ -47,6 +49,13 @@ const CrudOperation = () => {
       setDocId(id)
       setIsUpdate(true)
     }
+    useEffect(()=>{
+      if(localStorage.getItem("accessToken")){
+        navigate("/")
+      }else{
+        navigate("/login")
+      }
+    },[])
   return (
     <div className='h-[100vh] bg-blue-100'>
             <div className='flex  justify-center py-8  flex-col items-center gap-7 '>
