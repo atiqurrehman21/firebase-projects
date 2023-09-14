@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase_setup/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-
 import { NavLink, useNavigate } from "react-router-dom";
-const SignInWithGoogle = () => {
+const SignFacebook = () => {
   const navigate = useNavigate();
 
-  const [user] = useAuthState(auth);
-
   const HandleSubmit = () => {
-    const provider = new GoogleAuthProvider();
+    const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((results) => {
         localStorage.setItem("accessToken", results.user.accessToken);
@@ -24,19 +20,17 @@ const SignInWithGoogle = () => {
         // ..
       });
   };
-  const Signout=()=>{
-    auth.signOut()
-    
-  }
 
   return (
+    <div className="flex  justify-center py-1 flex-col items-center  bg-blue-100">
       <button
         class="shadow bg-purple-500  hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-        onClick={user?Signout: HandleSubmit}
+        onClick={HandleSubmit}
       >
-    {user?"Signout":"Sign In With Google"}
+        Sign In W Facebook
       </button>
+    </div>
   );
 };
 
-export default SignInWithGoogle;
+export default SignFacebook;

@@ -10,10 +10,11 @@ import {
 import Signup from './AuthOperation/Signup';
 import Login from './AuthOperation/Login';
 import CrudOperation from './CrudOperation/CrudOperation';
+import ChatApp from './ChatApp/ChatApp';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <CrudOperation/>,
+    element: <ChatApp/>,
   },
   {
     path: "/home",

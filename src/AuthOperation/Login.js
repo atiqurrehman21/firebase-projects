@@ -5,6 +5,7 @@ import { auth } from "../firebase_setup/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { NavLink, useNavigate } from "react-router-dom";
 import SignInWithGoogle from "./SignInGoogle";
+import SignFacebook from "./SignInFacebook";
 const Login = () => {
   const [detail, setdetail] = useState({
     id: uuidv4(),
@@ -108,6 +109,8 @@ const Login = () => {
         </div>
       </form>
       <SignInWithGoogle/>
+
+      <SignFacebook/>
 
     </div>
   );
